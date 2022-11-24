@@ -1,7 +1,7 @@
 // My Tasks Basic
 
 // HTML Elements
-let goBtnEl = document.getElementById("go-btn");
+let taskinputE1 = document.getElementById("task-input");
 let menuEl = document.getElementById("menu");
 let tasksEl = document.getElementById("tasks");
 
@@ -9,20 +9,12 @@ let tasksEl = document.getElementById("tasks");
 let tasks = loadtask();
 displayall();
 // Go Btn - Menu Listener
-goBtnEl.addEventListener("click", goBtnHandler);
+taskinputE1.addEventListener("keydown", tasksubmitHandler);
 
-function goBtnHandler() {
-  // Get Menu Selection
-  let selection = menuEl.value;
-
-  if (selection === "add") {
-    addTask();
-  } else if (selection === "toggle") {
-    toggleTask();
-  } else if (selection === "remove") {
-    removeTask();
-  } else if (selection === "clear") {
-    clearAll();
+function tasksubmitHandler(e) {
+  console.log(e.code);
+  if (e.code === "Enter") {
+    addTask(); 
   }
 }
 
