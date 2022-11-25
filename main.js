@@ -14,17 +14,21 @@ taskinputE1.addEventListener("keydown", tasksubmitHandler);
 function tasksubmitHandler(e) {
   console.log(e.code);
   if (e.code === "Enter") {
-    addTask(); 
+    //TASK
+    let description = taskinputE1.value;
+    tasks.push(newtask(description));
+    saveTasks();
+    displayall();
+    taskinputE1.value = "";
   }
 }
-
 // MENU FUNCTIONS
 function addTask() {
   let description = prompt("enter task description ");
   tasks.push(newtask(description));
-  tasksEl.innerHTML = `task added: ${description}`;
   saveTasks();
   displayall();
+  tasksEl.innerHTML = `task added: ${description}`;
 }
 
 function toggleTask() {
@@ -63,16 +67,29 @@ function newtask(taskdesc) {
   };
 }
 function displayall() {
-  let outputstr = "";
   for (let i = 0; i < tasks.length; i++) {
-    outputstr += gettaskhtmlstr(tasks[i], i);
+    tasksEl.appendChild(gettaskhtml(tasks[i], i));
   }
-  tasksEl.innerHTML = outputstr;
 }
-function gettaskhtmlstr(task, i) {
+function gettaskhtml(task, index) {
+  let divE1 = document.createElement("div");
+
+  let checkboxE1 = document.createElement("input");
+  checkboxE1.type = "Checkbox";
+
+  let textE1 = document.createTextNode(task.description);
+
+  let buttonE1 = document.createElement("button");
+  buttonE1.innerHTML = "Remove";
+
+  divE1.appendChild(checkboxE1);
+  divE1.appendChild(textE1);
+  divE1.appendChild(buttonE1);
   return `
-  <Div class="${task.completed}">
-    ${i}: ${task.description}
+  <Div>
+    <input type= "checkbox">
+    ${task.description}
+    <button>remove</button>
   </div>
   `;
 }
