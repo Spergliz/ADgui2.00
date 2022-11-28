@@ -63,7 +63,7 @@ function clearAll() {
 function newtask(taskdesc) {
   return {
     description: taskdesc,
-    compeleted: "",
+    completed: false,
   };
 }
 function displayall() {
@@ -79,7 +79,8 @@ function gettaskhtml(task, index) {
   checkboxE1.type = "Checkbox";
   checkboxE1.dataset.index = index;
   checkboxE1.addEventListener("input", checkboxchecker);
-  checkboxE1.checked = task.compeleted;
+  checkboxE1.checked = task.completed;
+  if(task)
 
   let textE1 = document.createTextNode(task.description);
 
