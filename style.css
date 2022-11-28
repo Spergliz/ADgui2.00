@@ -24,9 +24,7 @@ button {
   float: right;
   color: red;
   font-weight: bold;
- 
-  
-
- 
-
+}
+input[type="checkbox"] {
+  margin-right: 10px;
 }
