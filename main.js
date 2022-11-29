@@ -67,7 +67,7 @@ function newtask(taskdesc) {
   };
 }
 function displayall() {
-  tasksEl.innerHTML = '';
+  tasksEl.innerHTML = "";
   for (let i = 0; i < tasks.length; i++) {
     tasksEl.appendChild(gettaskhtml(tasks[i], i));
   }
@@ -80,17 +80,21 @@ function gettaskhtml(task, index) {
   checkboxE1.dataset.index = index;
   checkboxE1.addEventListener("input", checkboxchecker);
   checkboxE1.checked = task.completed;
-  if(task)
-
-  let textE1 = document.createTextNode(task.description);
+ 
+  let textspanE1 = document.createElement("span");
+  textspanE1.innerHTML = task.description;
+  if (task.completed) {
+    textspanE1.className = "completed";
+  }
 
   let buttonE1 = document.createElement("button");
   buttonE1.innerHTML = "Remove";
   buttonE1.dataset.index = index;
   buttonE1.addEventListener("click", removebtnhandler);
+  
 
   divE1.appendChild(checkboxE1);
-  divE1.appendChild(textE1);
+  divE1.appendChild(textspanE1);
   divE1.appendChild(buttonE1);
   return divE1;
 }
@@ -104,7 +108,7 @@ function loadtask() {
 
 function checkboxchecker(e) {
   let index = +e.target.dataset.index;
-  let task = tasks[index]
+  let task = tasks[index];
   task.completed = !task.completed;
   saveTasks();
   displayall();
@@ -112,7 +116,7 @@ function checkboxchecker(e) {
 }
 
 function removebtnhandler(e) {
-  let index = +e.target.dataset.index
+  let index = +e.target.dataset.index;
   console.log(e.target);
   tasks.splice(index, 1);
   saveTasks();
